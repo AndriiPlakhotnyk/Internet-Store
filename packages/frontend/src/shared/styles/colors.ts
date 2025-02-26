@@ -1,0 +1,17 @@
+export const colors = Object.freeze({
+	transparent: 'transparent',
+	black: '#000',
+	white: '#fff',
+	imperial: '#5C3074',
+	ocean_blue: '#5C28CC',
+	american_purple: '#442356',
+	medium_violet_red: '#D50A84',
+	primary: '#5C3074',
+	secondary: '#5C28CC',
+	secondaryDark: '#442356',
+	error: '#D50A84',
+	border: '#ccc',
+	textOnPrimary: '#fff',
+	disabledBackground: '#f0f0f0',
+	pageBackground: '#eaeaea',
+});
