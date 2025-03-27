@@ -8,6 +8,10 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -15,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.shopmobile"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +42,17 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "deepLinks": [
+      "LOGIN",
+      "REGISTER",
+      "VERIFY-CODE",
+      "SUCCESS-VERIFICATION",
+      "FORGOT-PASSWORD",
+      "RECOVER-PASSWORD/:token",
+      "PRODUCTS",
+      "SETTINGS"
+    ],
+    "host": "exp"
   }
 }

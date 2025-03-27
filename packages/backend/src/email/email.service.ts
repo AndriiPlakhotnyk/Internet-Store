@@ -1,4 +1,4 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as Postmark from 'postmark';
 import { ConfigService } from '@/config/env-config';
 
@@ -6,7 +6,6 @@ import { ConfigService } from '@/config/env-config';
 export class EmailService implements OnModuleInit {
   private client: Postmark.ServerClient;
   private supportEmail: string;
-  private readonly logger = new Logger(EmailService.name);
 
   constructor(private readonly configService: ConfigService) {}
 
@@ -43,8 +42,27 @@ export class EmailService implements OnModuleInit {
         TextBody: `${verificationCode}`,
       };
 
-      await this.client.sendEmail(message);
-      this.logger.log(`Verification email sent to ${email}`);
+      //await this.client.sendEmail(message);
+      console.log(`Verification code ${verificationCode} email sent to ${email}`);
+    } catch (err) {
+      // this.logger.error(`Failed to send verification email to ${email}`, err);
+      // throw new Error('Email sending failed, please try again later.');
+    }
+  }
+
+  async sendPasswordRecoverEmail(email: string, token: string): Promise<void> {
+    
+    const resetUrl = `exp://10.100.102.3:8081/--/RECOVER-PASSWORD/${token}`;
+    try {
+      const message = {
+        From: this.supportEmail,
+        To: email,
+        Subject: 'Password Reset Request',
+        TextBody: `<p>Click <a href="${resetUrl}">here</a> to reset your password.</p>`,
+      };
+
+      console.log(`Password Reset Request: ${resetUrl}`);
+      //await this.client.sendEmail(message);
     } catch (err) {
       // this.logger.error(`Failed to send verification email to ${email}`, err);
       // throw new Error('Email sending failed, please try again later.');

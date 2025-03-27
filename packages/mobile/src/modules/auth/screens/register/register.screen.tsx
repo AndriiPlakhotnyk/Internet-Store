@@ -8,7 +8,7 @@ import { CustomInput } from 'src/shared/componetnts/input';
 import { registerSchema } from './register.schema';
 import { RegisterFormInputs } from './register.interface';
 import { registerStyles } from './register.styles';
-import { authService } from '../../services/auth.service';
+import { authService } from 'src/modules/services/auth.service';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
 	RootStackParamList,
@@ -39,7 +39,6 @@ export const RegisterScreen = () => {
 
 	const handleRegister = async (data: RegisterFormInputs) => {
 		try {
-			console.log('DATA: ', data);
 			await authService.register(data);
 			navigation.navigate(NAVIGATION_KEYS.VERIFY_CODE, {
 				email: data.email,
@@ -170,7 +169,7 @@ export const RegisterScreen = () => {
 				<TouchableOpacity
 					onPress={() => navigation.navigate(NAVIGATION_KEYS.LOGIN)}
 				>
-					<Text style={registerStyles.loginText}> Sign In</Text>
+					<Text style={registerStyles.registerText}> Sign In</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

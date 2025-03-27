@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto, VerifyOtpDto } from '@/dto';
 import { GetUserDecorator } from '../decorators/get-user-decorator';
 import { Public } from '@/decorators';
-import { RefreshTokenGuard } from '@/guards';
+import { RefreshTokenGuard } from '@/security/guards';
 
 @Controller('auth')
 export class AuthController {
@@ -29,6 +29,21 @@ export class AuthController {
   ) {
     return this.authService.verifyOtp(email, verifyOtpDto);
   }
+
+  @Public()
+  @Post('forgot-password')
+	async requestPasswordRecover(@Body('email') email: string) {
+		return this.authService.requestUpdatePassword(email);
+	}
+
+  @Public()
+	@Post('recover-password/:token')
+	async recoverPassword(
+    @Param('token') token: string,
+    @Body('newPassword')  newPassword: string,
+  ) {
+		return this.authService.updatePassword(token, newPassword);
+	}
 
   @UseGuards(RefreshTokenGuard)
   @Post('refresh')

@@ -1,6 +1,6 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { AuthGuard } from './guards/auth-guard';
+import { AuthGuard } from './security/guards/auth-guard';
 import { ConfigService } from './config/env-config';
 import { HttpExceptionFilter } from './decorators';
 

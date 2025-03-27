@@ -25,7 +25,7 @@ export const registerStyles = StyleSheet.create({
 		color: COLORS.text,
 		fontFamily: FONTS.regular,
 	},
-	loginText: {
+	registerText: {
 		fontSize: 16,
 		color: COLORS.primary,
 		fontFamily: FONTS.bold,

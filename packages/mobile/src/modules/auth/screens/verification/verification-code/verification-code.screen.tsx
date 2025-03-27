@@ -8,7 +8,7 @@ import {
 	RootStackParamList,
 } from 'src/modules/navigation/types';
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/native';
-import { authService } from 'src/modules/auth/services/auth.service';
+import { authService } from 'src/modules/services/auth.service';
 
 export const VerificationCodeScreen: React.FC = () => {
 	const navigation =
@@ -33,10 +33,10 @@ export const VerificationCodeScreen: React.FC = () => {
 	};
 
 	const handleButton = async () => {
-		const verificationCode = code.join('');
-		if (email && verificationCode.length === 4) {
+		const otpCode = code.join('');
+		if (email && otpCode.length === 4) {
 			try {
-				await authService.verifyOtp(email, verificationCode);
+				await authService.verifyOtp({ email, otpCode });
 				navigation.navigate(NAVIGATION_KEYS.SUCCESS_VERIFICATION);
 			} catch (error) {
 				console.error('Verification failed:', error);

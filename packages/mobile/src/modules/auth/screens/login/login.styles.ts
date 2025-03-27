@@ -38,4 +38,14 @@ export const loginStyles = StyleSheet.create({
 		color: COLORS.primary,
 		fontFamily: FONTS.bold,
 	},
+	forgotPasswordContainer: {
+		alignSelf: 'flex-start',
+		marginVertical: 8,
+	},
+
+	forgotPasswordText: {
+		color: '#007AFF',
+		fontSize: 14,
+		fontWeight: '600',
+	},
 });
