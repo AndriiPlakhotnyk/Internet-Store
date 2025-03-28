@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
+import { randomBytes } from 'crypto';
 
 export async function hashData(data: string): Promise<string> {
   const salt = await bcrypt.genSalt(13);
@@ -13,6 +14,10 @@ export async function verifyHash(data: string, hash: string): Promise<boolean> {
 export function generateSecureFourDigitCode(): string {
   const code = crypto.randomInt(1000, 10000);
   return code.toString();
+}
+
+export function generateRandomToken(length: number = 32): string {
+  return randomBytes(length).toString('hex');
 }
 
 

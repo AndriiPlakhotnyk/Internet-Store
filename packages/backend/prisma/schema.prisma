@@ -14,18 +14,29 @@ datasource db {
 }
 
 model User {
-  id                     String   @id @default(uuid())
-  email                  String   @unique
-  fullName               String   @map("full_name")
-  phoneNumber            String   @map("phone_number")
-  shippingAddress        String   @map("shipping_address")
-  password               String
-  isVerified             Boolean  @map("is_verified") @default(false)
-  verificationCode       String?  @map("verification_code")
-  role                   Role     @default(USER)
-  hashedRt               String?  @map("refresh_token")
+  id                 String               @id @default(uuid())
+  email              String               @unique
+  fullName           String               @map("full_name")
+  phoneNumber        String               @map("phone_number")
+  shippingAddress    String               @map("shipping_address")
+  password           String
+  isVerified         Boolean              @default(false) @map("is_verified")
+  verificationCode   String?              @map("verification_code")
+  role               Role                 @default(USER)
+  hashedRt           String?              @map("refresh_token")
+  PasswordResetToken PasswordResetToken[]
 
   @@map("users")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
 }
 
 enum Role {

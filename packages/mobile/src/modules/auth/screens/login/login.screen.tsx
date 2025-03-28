@@ -14,7 +14,7 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { loginSchema } from './login.schema';
 import { LoginFormInputs } from './login.interface';
-import { authService } from '../../services/auth.service';
+import { authService } from 'src/modules/services/auth.service';
 import { AxiosError } from 'axios';
 
 export const LoginScreen = () => {
@@ -98,6 +98,17 @@ export const LoginScreen = () => {
 					/>
 				)}
 			/>
+
+			<TouchableOpacity
+				style={loginStyles.forgotPasswordContainer}
+				onPress={() =>
+					navigation.navigate(NAVIGATION_KEYS.FORGOT_PASSWORD)
+				}
+			>
+				<Text style={loginStyles.forgotPasswordText}>
+					Forgot password?
+				</Text>
+			</TouchableOpacity>
 
 			<CustomButton title="Sign in" onPress={handleSubmit(handleLogin)} />
 

@@ -1,4 +1,4 @@
-import { productService } from 'src/modules/auth/services/product.service';
+import { productService } from 'src/modules/services/product.service';
 import { create } from 'zustand';
 
 interface Product {
